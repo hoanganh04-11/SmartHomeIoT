@@ -231,28 +231,45 @@ sensors 1 --- n alerts
 ## 📁 Cấu trúc dự án
 
 ```text
-HomeSmartIoT/
-├── src/
-│   ├── main/
-│   │   ├── java/com/smarthome/iot/
-│   │   │   ├── config/
-│   │   │   ├── controller/
-│   │   │   │   ├── admin/
-│   │   │   │   ├── client/
-│   │   │   │   
-│   │   │   │ 
-│   │   │   ├── service/
-│   │   │   ├── repository/
-│   │   │   ├── domain/
-│   │   │   └── IotApplication.java
-│   │   ├── resources/
-│   │   │   └── application.properties
-│   │   └── webapp/WEB-INF/view/
-│   │       ├── admin/
-│   │       └── client/
-├── pom.xml
-├── mvnw
-├── mvnw.cmd
+Project_Java_MyClass/
+├── backend/                         # Spring Boot + JSP + MQTT
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/com/smarthome/iot/
+│   │   │   │   ├── config/
+│   │   │   │   ├── controller/
+│   │   │   │   │   ├── admin/
+│   │   │   │   │   └── client/
+│   │   │   │   ├── domain/
+│   │   │   │   │   └── dto/
+│   │   │   │   ├── repository/
+│   │   │   │   └── service/
+│   │   │   │       └── validator/
+│   │   │   ├── resources/
+│   │   │   │   └── application.properties
+│   │   │   └── webapp/
+│   │   │       ├── WEB-INF/view/
+│   │   │       │   ├── admin/
+│   │   │       │   └── client/
+│   │   │       └── resources/
+│   │   └── test/java/com/smarthome/iot/
+│   ├── pom.xml
+│   ├── mvnw
+│   └── mvnw.cmd
+├── embedded/
+│   └── stm32-node/                  # Firmware node cảm biến STM32
+│       ├── Core/
+│       │   ├── Inc/
+│       │   └── Src/
+│       ├── Drivers/
+│       │   ├── CMSIS/
+│       │   └── STM32F1xx_HAL_Driver/
+│       ├── myLib/
+│       │   ├── inc/
+│       │   └── src/
+│       ├── MDK-ARM/
+│       ├── HomeSmart.ioc
+│       └── README.md
 └── README.md
 ```
 
