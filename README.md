@@ -206,25 +206,18 @@ CREATE DATABASE smarthome CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 - `sensors`
 - `sensor_data`
 - `devices`
-<<<<<<< HEAD
 - `alerts`
 - `spring_session`, `spring_session_attributes`
-=======
 
->>>>>>> b628322aaa27b9610f843cd5b8b3cf036ff9c5ad
+---
 
 ### Quan hệ dữ liệu cơ bản
 
-```text
 roles 1 --- n users
 rooms 1 --- n sensors
 rooms 1 --- n devices
 sensors 1 --- n sensor_data
-<<<<<<< HEAD
 sensors 1 --- n alerts
-=======
->>>>>>> b628322aaa27b9610f843cd5b8b3cf036ff9c5ad
-```
 
 ---
 
@@ -277,7 +270,7 @@ Project_Java_MyClass/
 
 ## 🔌 Chức năng phần cứng
 
-> Firmware đã có trong repo tại `embedded/stm32-node` (STM32CubeMX + HAL), sẵn sàng build/nạp và tích hợp trực tiếp với Gateway ESP32.
+> Firmware đã có trong repo tại `embedded/stm32-node`, sẵn sàng build/nạp và tích hợp trực tiếp với Gateway ESP32.
 
 
 ### Node cảm biến (STM32)
