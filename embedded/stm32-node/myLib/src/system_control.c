@@ -63,7 +63,7 @@ void SysCtrl_Init(SystemContext_t *ctx)
     ctx->state          = SYSTEM_STATE_BOOT;
     ctx->auto_mode      = 1U;    /* Mặc định: tự động */
     ctx->temp_threshold = 35U;   /* °C  — đồng bộ với gateway default */
-    ctx->gas_threshold  = 600U;  /* ADC — đồng bộ với gateway default */
+    ctx->gas_threshold  = 60U;   /* %   — đồng bộ với gateway default */
 }
 
 /* ============================================================
@@ -128,8 +128,8 @@ static void ReadAnalogSensors(SystemContext_t *ctx)
 {
     if (IsTimeElapsed(&ctx->tick_analog, ANALOG_READ_PERIOD_MS))
     {
-        ctx->mq2_adc = MQ2_Read_ADC_Average(&hadc1, MQ2_SAMPLE_COUNT)*100/4095;
-        ctx->ldr_adc = LDR_Read_ADC_Average(&hadc2, LDR_SAMPLE_COUNT)*100/4095;
+        ctx->mq2_adc = MQ2_Read_ADC_Average(&hadc1, MQ2_SAMPLE_COUNT) * 100 / 4095;
+        ctx->ldr_adc = LDR_Read_ADC_Average(&hadc2, LDR_SAMPLE_COUNT) * 100 / 4095;
     }
 }
 
@@ -143,8 +143,8 @@ static void ControlOutputs(SystemContext_t *ctx)
 
     /* ---- Tính cảnh báo gas với hysteresis ---- */
     uint16_t thr_on  = ctx->gas_threshold;
-    uint16_t thr_off = (ctx->gas_threshold > 200U)
-                       ? (ctx->gas_threshold - 200U) : 0U;
+    uint16_t thr_off = (ctx->gas_threshold > 5U)
+                       ? (ctx->gas_threshold - 5U) : 0U;
 
     if (ctx->mq2_adc >= thr_on)
     {

@@ -138,7 +138,7 @@ static void refreshHum(const SensorData_t& data) {
 static void refreshGas(const SensorData_t& data) {
   tft.fillRect(4, 141, 152, 78, COLOR_CARD);
 
-  uint16_t threshold = data.gasThreshold > 0 ? data.gasThreshold : 600;
+  uint16_t threshold = data.gasThreshold > 0 ? data.gasThreshold : 60;
   bool gasAlert = data.gasValue >= threshold;
   uint16_t borderColor = gasAlert ? COLOR_RED : COLOR_GREEN;
   tft.drawRoundRect(2, 122, 156, 116, 5, borderColor);
@@ -153,7 +153,7 @@ static void refreshGas(const SensorData_t& data) {
   tft.print(data.gasValue);
   tft.setTextSize(1);
   tft.setTextColor(COLOR_WHITE);
-  tft.print(" ppm");
+  tft.print(" %");
 
   tft.setTextSize(1);
   tft.setCursor(10, 185);
@@ -170,9 +170,9 @@ static void refreshGas(const SensorData_t& data) {
   tft.printf("N:%u", threshold);
 
   int barMaxW = 144;
-  int barVal = map(constrain((int)data.gasValue, 0, 1000), 0, 1000, 0, barMaxW);
-  uint16_t barColor = data.gasValue < 300 ? COLOR_GREEN :
-                      data.gasValue < 600 ? COLOR_ORANGE : COLOR_RED;
+  int barVal = map(constrain((int)data.gasValue, 0, 100), 0, 100, 0, barMaxW);
+  uint16_t barColor = data.gasValue < 30 ? COLOR_GREEN :
+                      data.gasValue < 60 ? COLOR_ORANGE : COLOR_RED;
   tft.fillRect(6, 203, barMaxW, 12, COLOR_CARD);
   tft.drawRect(6, 205, barMaxW, 8, COLOR_GRAY);
   tft.fillRect(7, 206, barVal, 6, barColor);
